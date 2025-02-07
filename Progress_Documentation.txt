@@ -1,0 +1,143 @@
+Saturday    11/23/2024
+***********************************************************************************************************************
+Notebooks/1_load_projects.ipynb:
+    This gets all the projects from the project page and stores them as .parquet files.
+
+Data_Raw/project_tables/ogb_{NUMBER}_{NUMBER}.parquet:
+    I scraped all the data from the project search tables and put it into this folder as parquet files. Numbers denote web page numbers.
+
+Notebooks/2_get_project_locations.ipynb:
+    This takes all the projects from the parquets, then I get the coordinate locations for each.
+    I used an API to get the coordinates for each location. The result is og_geocoded.csv.
+
+Data_Raw/project_tables/og_geocoded.csv:
+    This contains the coordinate locations for each project. It is the aggregate of all parquet tables.
+
+These are the records of each unique project from CFA and Georgetown
+
+***********************************************************************************************************************
+
+
+Sunday      11/24/2024
+***********************************************************************************************************************
+Notebooks/Map_Boundaries/Washington_DC_Boundary.shp: 
+    https://catalog.data.gov/dataset/washington-dc-boundary/resource/094cd001-8c21-43cd-a302-16e39fcfbb2a
+    Map boundary of the District.
+
+Notebooks/Map_Boundaries/Building_Footprints.shp: 
+    https://catalog.data.gov/dataset/building-footprints-d97ff
+    Building Footprints in the District (I look only at maps of the Georgetown Area though).
+
+Notebooks/3_initial_maps.ipynb:
+    Plot the initial maps of the area to see where all the property requests are.
+
+These are the physical locations for plotting purposes.
+
+***********************************************************************************************************************
+
+
+Monday      11/25/2024
+***********************************************************************************************************************
+Research/CAG-Guide-to-Historic-Preservation-Work-in-Georgetown.pdf: https://cagtown.org/programs/historic-preservation/
+    Comes from the Citizen's Association of Georgetown's page. This outlines the steps for how the process works.
+
+***********************************************************************************************************************
+
+
+Tuesday     11/26/2024
+***********************************************************************************************************************
+Notebooks/4_load_meetings.ipynb:
+    For the first part of the notebook, I accessed projects that involved a different number of steps,
+    then created the Step_Review.pdf to see what the flow was like for each project.
+
+Research/Step_Review.pdf: 
+    https://docs.google.com/document/d/1ItQlKFlPT6ztWXrrKrtkvMJlbbIOZEYpuFw-YDsxMSo/edit?usp=sharing
+    I grouped all the OGB projects by the number of steps involved, randomly selected one from each number of steps, then reviewed what happened in each of those steps.
+
+This is an example flow for each project, based on the number of times the project was discussed at a CFA/OGB meeting.
+
+***********************************************************************************************************************
+
+
+Wednesday   11/27/2024
+***********************************************************************************************************************
+Notebooks/4_load_meetings.ipynb (cont.):
+    For this part of the notebook, I scraped all the meeting links and dates and put the information into the table below.
+
+Data_Raw/meeting_info/meeting_links.csv:
+    I scraped the meeting dates with meeting link pages from the record-cfa-actions page.
+
+This contains all the links/dates for CFA and OGB meetings.
+
+***********************************************************************************************************************
+
+
+Saturday   12/07/2024
+***********************************************************************************************************************
+Notebooks/5_load_meeting_actions.ipynb:
+    For this part of the notebook, I scraped all the relevant meeting information into the three tables below for CFA meetings.
+
+Data_Raw/meeting_info/cfa_meetings/all_appendices.csv:
+Data_Raw/meeting_info/cfa_meetings/all_letters.csv:
+Data_Raw/meeting_info/cfa_meetings/all_minute_links.csv:
+    I used the meeting links I scraped before to go to each CFA Meeting to access available appendices for OGB, links to
+    letters for larger project recommendations for OGB, and links for the CFA meeting minutes.
+
+Get all the meeting content for CFA meetings, including the appendices, letters, and links to minutes.
+
+***********************************************************************************************************************
+
+
+Sunday      12/08/2024
+***********************************************************************************************************************
+Notebooks/5_load_meeting_actions.ipynb (cont.):
+    For this part of the notebook, I scraped OGB meeting appendice results, reviews, and CFA meeting minutes.
+
+Notebooks/6_load_meeting_minutes.ipynb:
+    I scraped CFA meeting minutes.
+
+Data_Raw/meeting_info/ogb_meetings/all_reviews.csv:
+Data_Raw/meeting_info/ogb_meetings/consents/all_consents.csv:
+Data_Raw/meeting_info/ogb_meetings/denials/all_denials.csv:
+Data_Raw/meeting_info/ogb_meetings/others/all_others.csv:
+Data_Raw/meeting_info/cfa_meetings/minutes.json:
+    I used the meeting links I scraped before to go to each OGB Meeting to access available consent/denial/other calendars,
+    along with all the projects and their actions/previous reviews. Then, I got all the minutes from the cfa meetings.
+
+Get the meeting content for OGB meetings and the minutes from the CFA meetings.
+
+***********************************************************************************************************************
+
+
+Tuesday      12/10/2024
+***********************************************************************************************************************
+Research/Meeting_Page_Sources.pdf: https://docs.google.com/document/d/1bw3N5y1cB6Br1CGdc5UHqapjocn9zBdg01My4RIKtUc/edit?usp=sharing
+    I put images of the websites the driver went to and webscraped, specifically the OGB/CFA Meeting main pages, then the minutes.
+    I did not inlcude the pages for Consent, Denial, Other, or for Old Georgetown Board Appendix.
+
+Notebooks/7_EDA_meeting_appendix_results.ipynb:
+    Started exploring consents, denials, and others for each of the OGB projects. 
+    BIG ISSUE: it looks like the denials are around 5% of the cases, and of that, most are for 
+    insufficient materials, unknown, or inactive applications, topics that are administrative, rather than
+    design focused. ABOUT 1% OF THE TOTAL OGB PROJECTS ARE DENIED FOR INCOMPATIBILITY WITH THE HISTORIC DISTRICT.
+
+
+    PIVOTING THE PROJECT!
+    NEW FOCUS: LOOKING AT THE ARCHITECTURAL CHARACTER OF THE PROPERTIES IN THE HISTORIC DISTRICT.
+    USING MULTIMODAL LLMS TO CLASSIFY ARCHITECTURE.
+    NEXT PART OF THE PROJECT CAN COME BACK TO LINKING THE RESULTS OF THAT TO THE RENOVATIONS THAT ARE DONE
+    ON THESE PROPERTIES! 
+
+
+***********************************************************************************************************************
+
+
+Monday      01/13/2025
+***********************************************************************************************************************
+Notebooks/8_OpenStreetMap_Image_Access.ipynb: [IN PROGRESS]
+    Load in the streetview images of all the properties in Georgetown from the project list from OGB.
+
+Notebooks/9_LLM_ViT.ipynb: [IN PROGRESS]
+    Starting to work with pre-built LLMs and Vision Transformer models to extract features and initial data for next steps.
+ 
+***********************************************************************************************************************
